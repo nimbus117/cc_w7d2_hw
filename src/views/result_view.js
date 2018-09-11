@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
+const CreateAndAppend = require('../helpers/create_append.js');
 
 const ResultView = function (section) {
   this.section = section;
@@ -6,33 +7,18 @@ const ResultView = function (section) {
 
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('Instruments:selected-ready', e => {
-    console.log(e.detail);
-    this.section.innerHTML = '';
-    this.renderFamilyInfo(e.detail);
-    this.renderFamilyInstruments(e.detail);
+    this.render(e.detail);
   })
 }
 
-ResultView.prototype.renderFamilyInfo = function (family) {
-  const familyInfoHeading = document.createElement('h2');
-  familyInfoHeading.textContent = family.name;
-  this.section.appendChild(familyInfoHeading);
-  const familyInfoParagraph = document.createElement('p');
-  familyInfoParagraph.textContent = family.description;
-  this.section.appendChild(familyInfoParagraph);
-}
-
-ResultView.prototype.renderFamilyInstruments = function (family) {
-  const familyInstrumentHeading = document.createElement('h2');
-  familyInstrumentHeading.textContent = 'Instruments Include';
-  this.section.appendChild(familyInstrumentHeading);
-  const familyInstrumentList = document.createElement('ul');
-  this.section.appendChild(familyInstrumentList);
+ResultView.prototype.render = function (family) {
+  this.section.innerHTML = '';
+  CreateAndAppend('h2', family.name, this.section);
+  CreateAndAppend('p', family.description, this.section);
+  CreateAndAppend('h2', 'Instruments Include', this.section);
+  const familyInstrumentList = CreateAndAppend('ul', '', this.section);
   family.instruments.forEach(instr => {
-    console.log(instr);
-    let listItem = document.createElement('li');
-    listItem.textContent = instr;
-    familyInstrumentList.appendChild(listItem);
+    CreateAndAppend('li', instr, familyInstrumentList);
   })
 }
 

@@ -3,8 +3,6 @@ const SelectView = require('./views/select_view.js');
 const ResultView = require('./views/result_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('JavaScript Loaded');
-
   const dropDown = document.querySelector('#instrument-families');
   const selectView = new SelectView(dropDown);
   selectView.bindEvents();
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultView = new ResultView(section);
   resultView.bindEvents();
 
-  // needs to be last
   const instrumentFamilies = new InstrumentFamilies;
   instrumentFamilies.bindEvents();
 });

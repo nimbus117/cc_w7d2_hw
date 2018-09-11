@@ -31,7 +31,6 @@ const InstrumentFamilies = function() {
 };
 
 InstrumentFamilies.prototype.bindEvents = function () {
-  console.log(this.instrumentFamilies);
   PubSub.publish('Instruments:all-ready', this.instrumentFamilies);
 
   PubSub.subscribe('SelectView:change', e => {
@@ -41,7 +40,6 @@ InstrumentFamilies.prototype.bindEvents = function () {
 
 InstrumentFamilies.prototype.publishInstrumentDetails = function (index) {
   const instrumentDetails = this.instrumentFamilies[index];
-  console.log(instrumentDetails);
   PubSub.publish('Instruments:selected-ready', instrumentDetails);
 }
 
