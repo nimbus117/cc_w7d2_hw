@@ -1,4 +1,4 @@
-CreateAndAppend = function (tag, text, parent) {
+const CreateAndAppend = function (tag, text, parent) {
   const element = document.createElement(tag);
   element.textContent = text;
   parent.appendChild(element);

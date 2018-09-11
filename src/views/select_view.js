@@ -1,8 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js');
 const CreateAndAppend = require('../helpers/create_append.js');
 
-const SelectView = function (dropDown) {
-  this.dropDown = dropDown;
+const SelectView = function (element) {
+  this.element = element;
 }
 
 SelectView.prototype.bindEvents = function () {
@@ -10,15 +10,15 @@ SelectView.prototype.bindEvents = function () {
     this.populateOptions(e.detail);
   })
 
-  this.dropDown.addEventListener('change', e => {
+  this.element.addEventListener('change', e => {
     const index = e.target.value;
     PubSub.publish('SelectView:change', index);
   })
 }
 
 SelectView.prototype.populateOptions = function (instruments) {
-  instruments.forEach((instr, index) => {
-    const option = CreateAndAppend('option', instr.name, this.dropDown);
+  instruments.forEach((instrument, index) => {
+    const option = CreateAndAppend('option', instrument.name, this.element);
     option.value = index;
   })
 }
