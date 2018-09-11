@@ -1,3 +1,5 @@
+const PubSub = require('../helpers/pub_sub.js');
+
 const InstrumentFamilies = function() {
   this.instrumentFamilies = [
     {
@@ -27,5 +29,10 @@ const InstrumentFamilies = function() {
     }
   ];
 };
+
+InstrumentFamilies.prototype.bindEvents = function () {
+  console.log(this.instrumentFamilies);
+  PubSub.publish('Instruments:all-ready', this.instrumentFamilies);
+}
 
 module.exports = InstrumentFamilies;
