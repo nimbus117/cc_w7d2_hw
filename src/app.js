@@ -4,7 +4,8 @@ const SelectView = require('./views/select_view.js');
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
 
-  const selectView = new SelectView;
+  const dropDown = document.querySelector('#instrument-families');
+  const selectView = new SelectView(dropDown);
   selectView.bindEvents();
 
 
