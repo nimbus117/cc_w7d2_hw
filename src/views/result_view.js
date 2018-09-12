@@ -1,5 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
-const CreateAndAppend = require('../helpers/create_append.js');
+const createAndAppend = require('../helpers/create_append.js');
 
 const ResultView = function (element) {
   this.element = element;
@@ -13,12 +13,12 @@ ResultView.prototype.bindEvents = function () {
 
 ResultView.prototype.render = function (family) {
   this.element.innerHTML = '';
-  CreateAndAppend('h2', family.name, this.element);
-  CreateAndAppend('p', family.description, this.element);
-  CreateAndAppend('h2', 'Instruments Include', this.element);
-  const familyInstrumentList = CreateAndAppend('ul', '', this.element);
+  createAndAppend('h2', family.name, this.element);
+  createAndAppend('p', family.description, this.element);
+  createAndAppend('h2', 'Instruments Include', this.element);
+  const familyInstrumentList = createAndAppend('ul', '', this.element);
   family.instruments.forEach(instrument => {
-    CreateAndAppend('li', instrument, familyInstrumentList);
+    createAndAppend('li', instrument, familyInstrumentList);
   })
 }
 

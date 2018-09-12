@@ -1,5 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
-const CreateAndAppend = require('../helpers/create_append.js');
+const createAndAppend = require('../helpers/create_append.js');
 
 const SelectView = function (element) {
   this.element = element;
@@ -17,7 +17,7 @@ SelectView.prototype.bindEvents = function () {
 
 SelectView.prototype.populateOptions = function (instruments) {
   instruments.forEach((instrument, index) => {
-    const option = CreateAndAppend('option', instrument.name, this.element);
+    const option = createAndAppend('option', instrument.name, this.element);
     option.value = index;
   })
 }
